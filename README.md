@@ -1,6 +1,11 @@
 # Regex-Notes
+> Following tutorial is a summary of this [CS50 lecture](https://www.youtube.com/watch?v=hy3sd9MOAcc&t=4218s "CS50P - Lecture 7 - Regular Expressions") 
+
+<br>
 
 ## **Regular Expressions (Regex)**
+
+
 > Regular expressions are widely used in computer science for the purpose of pattern matching. Let say you are searching for a string which exactly matches certain pattern (or specification of your need), then regex comes handy here.
 
 <br>
