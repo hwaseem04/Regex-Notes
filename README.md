@@ -223,7 +223,7 @@ import re
 # Using split to just trim of any trailing whitespaces
 email = input("Email : ").split()  
 
-if re.search(r"^\w+@(\w+\.)?\w+\.in$", email):
+if re.search(r"^(\w|\.)+@(\w+\.)?\w+\.in$", email):
     print("Valid")
 else:
     print("Invalid")
@@ -232,4 +232,6 @@ else:
 
 In the above code `(\w+\.)?` specifies we can have _0 or 1 repetitions(recall usage of `?` in above table)_ of `\w+\.` as it is grouped using `()`.
 
-Hence our pattern accepts domains like `.in` _(i.e with 0 repetation of `\w+\.`)_ **or** `.edu.in` _(i.e with 1 repetation of `\w+\.`)_. 
+Hence our pattern accepts domains like `.in` _(i.e with 0 repetation of `\w+\.`)_ **or** `.edu.in` _(i.e with 1 repetation of `\w+\.`)_.
+
+Also notice the usage of `(\w|\.)` (read as *word character or period*) which now allows usage of **periods** as well in username.
