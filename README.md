@@ -1,6 +1,7 @@
 # Regex-Notes
 > Following tutorial is a summary of this [CS50 lecture](https://www.youtube.com/watch?v=hy3sd9MOAcc&t=4218s "CS50P - Lecture 7 - Regular Expressions") 
-> Fo official documentation, visit [Python Regular Expressions](https://docs.python.org/3/library/re.html "Regular Expressions")
+> For official documentation, visit [Python Regular Expressions](https://docs.python.org/3/library/re.html "Regular Expressions")
+
 <br>
 
 ## **Regular Expressions (Regex)**
