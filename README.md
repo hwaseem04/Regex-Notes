@@ -326,4 +326,8 @@ But `re.search` is not the only function in `re` module.
 ---
 ---
 
-## 2) re.sub()
+## 2) re.sub(pattern, repl, string, count=0, flag=0)
+> re.sub() is used to replace particular sub string matching the some `pattern` with `repl` string in a main input `string`.
+* `pattern` - regex pattern to match
+* `repl` - replacement string. TO replace it with matched string
+* `string` - Input string to replace particular sub string matching the above `pattern` with `repl` string 
