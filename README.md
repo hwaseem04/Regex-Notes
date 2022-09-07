@@ -20,17 +20,14 @@
 ```python
 import re
 ```
+---
 
-<br>
-
-## **Problem**
- Let us consider the case where you need to get user input as email id, and you need to accept only those emails which are valid (Valid in sense, not checking for domain names, rather we will be checking general syntax of a email id more strictly)
-<br>
-
+### **Question**
+ Let us consider the case where you need to get user input as email id, and you need to accept only those emails which are valid (Valid in sense, not checking for domain names, rather we will be checking general syntax of a email id more strictly). 
 <br>
 
 ## 1) re.search( _pattern_ , _string_ [,_flags_]) 
->re.search is the most commonly used functionality in this module. _flags_ is optional.
+>re.search is the most commonly used functionality in this module. _flags_ is optional. Let us solve the above question with this.
 
 <br>
 The following code will be subjected to change upon each new concepts.
@@ -82,6 +79,8 @@ What this means is at I am trying to match a string that should have _1 or more_
 <br>
 
 But this is not just enough, if we input something like `hello@@some` is going to still print as VALID email as we havent set any restriction for **domain** syntax, number of **@** etc. There are still lot of other issues which I will deal one by one.
+
+
 
 ---
 <br>
@@ -220,7 +219,9 @@ What if someone's email has multiple domain like **snuchennai.edu.in**, we need 
 | ----------------- | ------- |
 | A\|B              |  Either pattern A or patter B allowed|
 | (...)             |  Parenthesis can be used to group special characters|
+| (?: ...)          |  Non capturing version of above one|
 
+Dont worry about the 3rd one for now, will let you know in a moment.
 
 ```python
 import re
@@ -240,3 +241,89 @@ In the above code `(\w+\.)?` specifies we can have _0 or 1 repetitions(recall us
 Hence our pattern accepts domains like `.in` _(i.e with 0 repetation of `\w+\.`)_ **or** `.edu.in` _(i.e with 1 repetation of `\w+\.`)_.
 
 Also notice the usage of `(\w|\.)` (read as *word character or period*) which now allows usage of **periods** as well in username.
+
+---
+
+In re.search() there is one other amazing functionality involving `()` and `(?:)`.
+
+> What if you, not just want to match a pattern but also want to extract specific information from the matched pattern?
+
+Offcourse with usual python coding you can attain that, but re.search() offers more functionality. Anyway lets see below both traditional pythonic way and regex way for one such example.
+
+**Consider the Question below**
+* You want to get user input their name, but along with their first and last name. Users input their name mostly in either of the below formats
+    * FirstName LastName
+    * LastName, FirstName
+* We need to write a code where we can get their proper names irrespective of the above formats.
+
+<br>
+
+The solution in usual pythonic way
+```python
+name = input("What's your name? ").strip()
+if "," in name:
+    last,first = name.split(", ") # Assuming barely that user will give space after comma (i.e lastname, firstname)
+    name = f"{first} {last}"
+# If no comma is there we can directly print it.
+print(name)
+```
+
+But there are few issues in the above code :
+* What if user types with a space after comma? i.e `lastname,firstname`. The split function cant split anything and throws error because we are unpacking it with two variables.
+* What if someone has name like `Robert Downy Jr` where they vaguely give input as `Downy, Robert, Jr`. It will also pop out error, as we are unpacking only two items in split function.
+
+<br>
+
+Let us see regex solution
+
+```python
+import re
+name = input("What's your name? ").strip()
+
+if matches := re.search(r"^(.+), *(.+)$", name) :
+    print(matches)
+    last, first = matches.groups()
+    #last = matches.group(1)
+    #first = matches.group(2)
+    name = f"{first} {last}"
+
+print(name)
+```
+
+There are a couple of things going on above, let me break down one by one.
+* Python supports Walrus operator from python 3.8 onwards. It does both assignment job and checks for boolean value of the variable in LHS.
+<br>
+* In the above regex pattern 
+    * `^(.+)` matches 0 or more charcters except newline in beginning
+    * `, *` maches for a comma and whitespace _(0 or more white space)_
+    * `(.+)$` matches 0 or more charcters except newline in the end
+<br>
+* So far, in the above codes we checked just the boolean value of `re.search()`, if its true then we declared our pattern is matched with input string, else not. But with return value of `re.search()`, one other interesting thing can be achieved.
+<br>
+* When we use `()` in our regex pattern it captures whatever string input matched within in. What it means is that, in the above code `(.+)` this matches any character _(0 or more repetations)_. So the first and second `()` captures each of the string matched to `.+` from the input. 
+<br>
+* And the captured string can be obtained by grouping the captured string(In some sort of order, so that we can access them with some index) using `groups()`  or `group()` as done above.
+<br>
+* Unlike usual python conventions of index starting at 0, here inorder to acces string matched inside first `()` we have to access them with index 1, i.e `matches.group(1)`.
+<br>
+* And then we are using usual [f strings](https://docs.python.org/3/tutorial/inputoutput.html "f Strings Documentation") to get the right format.
+<br>
+
+> Example : If the input is `Khan,Sal`. Then `first = Sal` and `last = Khan`.
+
+**What if you dont need to capture anything unnecessarily in `re.search()`, here comes the non capturing version which I alluded you above `(?:some_regexpattern)`. For the above code if we dont want to capture then the regex will be `re.search(r"^(?:.+), *(?:.+)$", name)`.**
+
+---
+
+A lot of stuff, isn't it ?
+But `re.search` is not the only function in `re` module.
+* `re.match()` - Similar to `re.search()`, except you dont need to explicitly provide `^` to specify beginning. 
+* `re.fullmatch` - Similar to `re.search()`, except you dont need to explicitly provide `^` and `$`to specify beginning and ending.
+
+>*__SelfNote__* :  
+* `..*` is same as `.+`
+* `re.IGNORECASE` is a flag which avoids checking case sensitivity in user input. 
+---
+---
+
+## 2) re.sub()
