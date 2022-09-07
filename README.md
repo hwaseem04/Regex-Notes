@@ -331,3 +331,90 @@ But `re.search` is not the only function in `re` module.
 * `pattern` - regex pattern to match
 * `repl` - replacement string. TO replace it with matched string
 * `string` - Input string to replace particular sub string matching the above `pattern` with `repl` string 
+
+---
+Let us learn it with a hypothetical example question.
+
+### **Question**
+ Let us consider the case where you need to get user input as twitter username.
+ What if someone by mistake\laziness gave input something like `My username is http://twitter.com/username`. 
+
+ So our job is to clean the input to have something like `My username is username` as output.
+
+ Let us see the solution first and I will go through it one by one.
+ > Note : You can approach the above problem with usual pythonic way, but asusual regex provides enourmous functinality which we should'nt waste.
+ 
+<br>
+
+```python
+import re
+
+url = input("Url : ").strip()
+required_string = re.sub(r"(https?://)?(www\.)?twitter\.com/", "", url)
+print(required_string)
+```
+
+**Explanation** (Dont worry if you couldn't get my explanation, it will be more vivid in example test cases)
+1. `(https?://)?` : specifies usage of `https://` or `http://`(because inner `?`, which allows repetation of `s` 0 or 1 times) is  optional(Because of outer `?`, which means 0 or 1 repetation)
+    1.1. Someone can even give input as www.twitter.com/username. Hence we are making `http` or `https` as optional.
+<br>
+1. `(www\.)?` : Similar to above we are even specifying that `www.` is optional
+<br>
+1. We are actually replacing any possibility of such urls with `""` (empty character) so that we are just left with the initial phrase `My username is` and the actual `username` at end.
+<br>
+1. If the user gave input with no url in it, then re.sub() will return the string with no changes.
+
+<br>
+
+> Example Test Cases:
+
+* Input : `My username is elonmusk`
+  Output: `My username is elonmusk` (Explanation point 4)
+  <br>
+* Input : `My username is https://www.twitter.com/elonmusk` *__(Notice `https`)__*
+  Output: `My username is elonmusk`
+  <br>
+* Input : `My username is http://www.twitter.com/elonmusk` **_(Notice `http`)_ (Explanaiton point 1: We made `s` optional in end of http with help of `?`)**
+  Output: `My username is elonmusk`
+  <br>
+* Input : `My username is www.twitter.com/elonmusk` **(Explanation point 1: We made `https` or `http` itself optional, hence our pattern matching is more robust)**
+  Output: `My username is elonmusk`
+  <br>
+* Input : `My username is https://twitter.com/elonmusk` **(Explanation point 2 : We made `www.` optional)**
+  Output: `My username is elonmusk`
+  
+
+More robust isn't it?
+
+---
+
+>The above work can also be done with help of `re.search()` and capturing `()`
+
+```python
+url = input("Url : ").strip()
+if matches := re.search(r".*(?:https?://)?(?:www\.)?twitter\.com/([a-z0-9_]+)", url)
+    print(f"My Username is {matches.group(1)}")
+else:
+    print(url)
+```
+<br>
+
+**Note Few Points for the above code :**
+* I have used noncapturing version of `()`
+* If the input string is with protocol then only it enters `if` loop, else it directly prints user input string.
+* Example Test cases and output:
+    * Input : `My username is elonmusk`
+      Output: `My username is elonmusk`
+    * Input : `My username is https://www.twitter.com/elonmusk`
+      Output: `My username is elonmusk`
+    * Input : `My username is www.twitter.com/elonmusk`
+      Output: `My username is elonmusk`
+
+---
+
+### Conclusion
+_I hope you got a clear understanding of regex. These are not the exhaustive list, there are lot other functionalities available in it. Just get to playaround with it._
+
+_Regex is also widely used in Perl, PHP, JavaScript, Java and even in word searching engines in Microsoft word, excel etc._
+
+___
