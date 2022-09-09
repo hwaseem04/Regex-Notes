@@ -5,7 +5,9 @@
 -->
 
 > For official documentation, visit [Python Regular Expressions](https://docs.python.org/3/library/re.html "Regular Expressions")
-
+> Useful Online regex tools : 
+>* [Regexr](https://regexr.com "Regexr")
+>* [Regex101](https://regex101.com "Regex101")
 <br>
 
 ## **Regular Expressions (Regex)**
