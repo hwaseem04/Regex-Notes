@@ -40,8 +40,8 @@ The following code will be subjected to change upon each new concepts.
 ```python
 import re
 
-# Using split to just trim of any trailing whitespaces
-email = input("Email : ").split()  
+# Using strip to just trim of any trailing whitespaces
+email = input("Email : ").strip()  
 
 if re.search("@", email):
     print("Valid")
@@ -67,8 +67,8 @@ In the above code I have passed `@` as the pattern to match in `re.search()`. Wh
 ```python
 import re
 
-# Using split to just trim of any trailing whitespaces
-email = input("Email : ").split()  
+# Using strip to just trim of any trailing whitespaces
+email = input("Email : ").strip()  
 
 if re.search(".+@.+", email):
     print("Valid")
@@ -92,8 +92,8 @@ Let us now first set a restriction for the ending of email address (Something sp
 ```python
 import re
 
-# Using split to just trim of any trailing whitespaces
-email = input("Email : ").split()  
+# Using strip to just trim of any trailing whitespaces
+email = input("Email : ").strip()  
 
 if re.search(r".+@.+\.in", email):
     print("Valid")
@@ -124,8 +124,8 @@ The Description which I have used above will be different from that of the offic
 ```python
 import re
 
-# Using split to just trim of any trailing whitespaces
-email = input("Email : ").split()  
+# Using strip to just trim of any trailing whitespaces
+email = input("Email : ").strip()  
 
 if re.search(r"^.+@.+\.in$", email):
     print("Valid")
@@ -153,8 +153,8 @@ But still `asdf %%some@@something.in` input is valid because we have'nt set any 
 ```python
 import re
 
-# Using split to just trim of any trailing whitespaces
-email = input("Email : ").split()  
+# Using strip to just trim of any trailing whitespaces
+email = input("Email : ").strip()  
 
 if re.search(r"^[a-zA-Z0-9_\.]+@[a-zA-Z0-9_]+\.in$", email):
     print("Valid")
@@ -199,8 +199,8 @@ Let us use `\w` below.
 ```python
 import re
 
-# Using split to just trim of any trailing whitespaces
-email = input("Email : ").split()  
+# Using strip to just trim of any trailing whitespaces
+email = input("Email : ").strip()  
 
 if re.search(r"^\w+@\w+\.in$", email):
     print("Valid")
@@ -231,8 +231,8 @@ Dont worry about the 3rd one for now, will let you know in a moment.
 ```python
 import re
 
-# Using split to just trim of any trailing whitespaces
-email = input("Email : ").split()  
+# Using strip to just trim of any trailing whitespaces
+email = input("Email : ").strip()  
 
 if re.search(r"^(\w|\.)+@(\w+\.)?\w+\.in$", email):
     print("Valid")
@@ -246,6 +246,8 @@ In the above code `(\w+\.)?` specifies we can have _0 or 1 repetitions(recall us
 Hence our pattern accepts domains like `edu.in` _(i.e with 0 repetation of `\w+\.`)_ **or** `snu.edu.in` _(i.e with 1 repetation of `\w+\.`)_.
 
 Also notice the usage of `(\w|\.)` (read as *word character `or` period*) which now allows usage of **periods** as well in username.
+
+[![asciicast](https://asciinema.org/a/113463.png)](https://asciinema.org/a/SDNVZX0lsJdrCkI1YR5rIdld9)
 
 ---
 
