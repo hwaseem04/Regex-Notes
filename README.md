@@ -251,7 +251,7 @@ Also notice the usage of `(\w|\.)` (read as *word character `or` period*) which 
 
 You can see below the demonstration of various valid and invalid email inputs for our above specified regex pattern.
 
-[![asciicast](/IMG.png)](https://asciinema.org/a/SDNVZX0lsJdrCkI1YR5rIdld9)
+[![asciicast](Regex-Notes/IMG.png)](https://asciinema.org/a/SDNVZX0lsJdrCkI1YR5rIdld9)
 
 ---
 
