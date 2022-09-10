@@ -429,9 +429,9 @@ _I hope you got a clear understanding of regex. These are not the exhaustive lis
 _Regex is also widely used in Perl, PHP, JavaScript, Java and even in searching engines used in Microsoft word, excel etc._
 
 For more examples refer my other codes in this repository
-* [IP_Address.py](/IP_Address.py) : To validate IP Address
-* [Convert_Time.py](/Convert_Time.py) : To Convert normal time to 24 hour time. 
-* [Shrink_Youtube_URL.py](/Shrink_Youtube_URL.py) : To Shrink Youtube urls.
-* [count_occurence.py](/count_occurence.py) : To count occurence of word `um`.
+* [IP_Address.py](/programs/IP_Address.py) : To validate IP Address
+* [Convert_Time.py](/programs/Convert_Time.py) : To Convert normal time to 24 hour time. 
+* [Shrink_Youtube_URL.py](/programs/Shrink_Youtube_URL.py) : To Shrink Youtube urls.
+* [count_occurence.py](/programs/count_occurence.py) : To count occurence of word `um`.
 
 ___
