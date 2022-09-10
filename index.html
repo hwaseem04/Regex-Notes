@@ -422,19 +422,19 @@ print(required_string)
 <p>Example Test Cases:</p>
 </blockquote>
 <ul>
-<li>Input : <code>My username is elonmusk</code>
+<li>Input : <code>My username is elonmusk</code><br>
 Output: <code>My username is elonmusk</code> (Explanation point 4)
 <br></li>
-<li>Input : <code>My username is https://www.twitter.com/elonmusk</code> <em><strong>(Notice <code>https</code>)</strong></em>
+<li>Input : <code>My username is https://www.twitter.com/elonmusk</code> <em><strong>(Notice <code>https</code>)</strong></em><br>
 Output: <code>My username is elonmusk</code>
 <br></li>
-<li>Input : <code>My username is http://www.twitter.com/elonmusk</code> <strong><em>(Notice <code>http</code>)</em> (Explanaiton point 1: We made <code>s</code> optional in end of http with help of <code>?</code>)</strong>
+<li>Input : <code>My username is http://www.twitter.com/elonmusk</code> <strong><em>(Notice <code>http</code>)</em> (Explanaiton point 1: We made <code>s</code> optional in end of http with help of <code>?</code>)</strong><br>
 Output: <code>My username is elonmusk</code>
 <br></li>
-<li>Input : <code>My username is www.twitter.com/elonmusk</code> <strong>(Explanation point 1: We made <code>https</code> or <code>http</code> itself optional, hence our pattern matching is more robust)</strong>
+<li>Input : <code>My username is www.twitter.com/elonmusk</code> <strong>(Explanation point 1: We made <code>https</code> or <code>http</code> itself optional, hence our pattern matching is more robust)</strong><br>
 Output: <code>My username is elonmusk</code>
 <br></li>
-<li>Input : <code>My username is https://twitter.com/elonmusk</code> <strong>(Explanation point 2 : We made <code>www.</code> optional)</strong>
+<li>Input : <code>My username is https://twitter.com/elonmusk</code> <strong>(Explanation point 2 : We made <code>www.</code> optional)</strong><br>
 Output: <code>My username is elonmusk</code></li>
 </ul>
 <p>More robust isn&#39;t it? If we want to achieve something like the above one in usual pythonic way, it would&#39;nt be completed in just <code>4 lines of code</code>.</p>
@@ -454,11 +454,11 @@ Output: <code>My username is elonmusk</code></li>
 <li>I have used noncapturing version of <code>()</code> for first two <code>()</code></li>
 <li>If the input string matches the regex pattern then only it enters <code>if</code> loop, else it directly prints user input string <code>url</code>.</li>
 <li>Example Test cases and output:<ul>
-<li>Input : <code>My username is elonmusk</code>
+<li>Input : <code>My username is elonmusk</code><br>
 Output: <code>My username is elonmusk</code></li>
-<li>Input : <code>My username is https://www.twitter.com/elonmusk</code>
+<li>Input : <code>My username is https://www.twitter.com/elonmusk</code><br>
 Output: <code>My username is elonmusk</code></li>
-<li>Input : <code>My username is www.twitter.com/elonmusk</code>
+<li>Input : <code>My username is www.twitter.com/elonmusk</code><br>
 Output: <code>My username is elonmusk</code></li>
 </ul>
 </li>
