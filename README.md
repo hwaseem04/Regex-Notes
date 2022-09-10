@@ -379,16 +379,16 @@ print(required_string)
 
 > Example Test Cases:
 
-* Input : `My username is elonmusk`
+* Input : `My username is elonmusk` <br>
   Output: `My username is elonmusk` (Explanation point 4)
   <br>
-* Input : `My username is https://www.twitter.com/elonmusk` *__(Notice `https`)__*
+* Input : `My username is https://www.twitter.com/elonmusk` *__(Notice `https`)__* <br>
   Output: `My username is elonmusk`
   <br>
-* Input : `My username is http://www.twitter.com/elonmusk` **_(Notice `http`)_ (Explanaiton point 1: We made `s` optional in end of http with help of `?`)**
+* Input : `My username is http://www.twitter.com/elonmusk` **_(Notice `http`)_ (Explanaiton point 1: We made `s` optional in end of http with help of `?`)** <br>
   Output: `My username is elonmusk`
   <br>
-* Input : `My username is www.twitter.com/elonmusk` **(Explanation point 1: We made `https` or `http` itself optional, hence our pattern matching is more robust)**
+* Input : `My username is www.twitter.com/elonmusk` **(Explanation point 1: We made `https` or `http` itself optional, hence our pattern matching is more robust)** <br>
   Output: `My username is elonmusk`
   <br>
 * Input : `My username is https://twitter.com/elonmusk` **(Explanation point 2 : We made `www.` optional)**
@@ -416,9 +416,9 @@ else:
 * Example Test cases and output:
     * Input : `My username is elonmusk` <br>
       Output: `My username is elonmusk`
-    * Input : `My username is https://www.twitter.com/elonmusk`
+    * Input : `My username is https://www.twitter.com/elonmusk` <br>
       Output: `My username is elonmusk`
-    * Input : `My username is www.twitter.com/elonmusk`
+    * Input : `My username is www.twitter.com/elonmusk` <br>
       Output: `My username is elonmusk`
 
 ---
