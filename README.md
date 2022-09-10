@@ -414,7 +414,7 @@ else:
 * I have used noncapturing version of `()` for first two `()`
 * If the input string matches the regex pattern then only it enters `if` loop, else it directly prints user input string `url`.
 * Example Test cases and output:
-    * Input : `My username is elonmusk`
+    * Input : `My username is elonmusk` <br>
       Output: `My username is elonmusk`
     * Input : `My username is https://www.twitter.com/elonmusk`
       Output: `My username is elonmusk`
