@@ -1,4 +1,4 @@
-# Regex-Notes
+# Regex-Notes(MAIN)
 
 <!--- 
 > Following tutorial is a summary of this [CS50 lecture](https://www.youtube.com/watch?v=hy3sd9MOAcc&t=4218s "CS50P - Lecture 7 - Regular Expressions") <br>
