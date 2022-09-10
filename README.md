@@ -246,7 +246,7 @@ In the above code `(\w+\.)?` specifies we can have _0 or 1 repetitions(recall us
 Hence our pattern accepts domains like `edu.in` _(i.e with 0 repetation of `\w+\.`)_ **or** `snu.edu.in` _(i.e with 1 repetation of `\w+\.`)_.
 
 Also notice the usage of `(\w|\.)` (read as *word character `or` period*) which now allows usage of **periods** as well in username.
-[![asciicast](https://asciinema.org/a/14.png)](https://asciinema.org/a/SDNVZX0lsJdrCkI1YR5rIdld9)
+[![asciicast](/IMG.png)](https://asciinema.org/a/SDNVZX0lsJdrCkI1YR5rIdld9)
 
 ---
 
