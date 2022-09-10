@@ -246,6 +246,11 @@ In the above code `(\w+\.)?` specifies we can have _0 or 1 repetitions(recall us
 Hence our pattern accepts domains like `edu.in` _(i.e with 0 repetation of `\w+\.`)_ **or** `snu.edu.in` _(i.e with 1 repetation of `\w+\.`)_.
 
 Also notice the usage of `(\w|\.)` (read as *word character `or` period*) which now allows usage of **periods** as well in username.
+
+<br>
+
+You can see below the demonstration of various valid and invalid email inputs for our above specified regex pattern.
+
 [![asciicast](/IMG.png)](https://asciinema.org/a/SDNVZX0lsJdrCkI1YR5rIdld9)
 
 ---
