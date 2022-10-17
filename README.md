@@ -1,9 +1,5 @@
 # Regex-Notes
 
-<!--- 
-> Following tutorial is a summary of this [CS50 lecture](https://www.youtube.com/watch?v=hy3sd9MOAcc&t=4218s "CS50P - Lecture 7 - Regular Expressions") <br>
--->
-
 > For official documentation, visit [Python Regular Expressions](https://docs.python.org/3/library/re.html "Regular Expressions")
 
 > Useful Online regex tools : 
@@ -103,14 +99,15 @@ else:
 ```
 
 In the above code notice I have used `\.in` which mean I am trying to match for a string which exactly has something like **.in** in it. (NOTE : I am not doing anything to specify that the matching string **must** end with **.in**, which I will show in a moment)
-<br>
+
 
 >**_Few points to note:_**
+
 * I am using `\.` because to avoid confusion with special character `.`, hence my regex looks for a exact `.` in the input string.
 * I am using `r" "` i.e rawstring, inorder to avoid python to misinterpret anything inside it with escape sequence. It is advisable to use rawstring whenever you use `\` in regex for programmer's convenience. 
     * In a Raw String escape sequences are not taken into account.
 * Still I havent restricted repetation of `@`. And still string input like `asdf %%some@@something.in ada` is valid, as we have'nt laid a strict starting and ending condition (so as to start with **proper username** and end with just **.in**).
----
+
 <br>
 
 >Let us now see how we can set restriction for beginning and ending of the input string.
@@ -243,21 +240,20 @@ else:
 
 In the above code `(\w+\.)?` specifies we can have _0 or 1 repetitions(recall usage of `?` in one of the above table)_ of `\w+\.` as it is grouped using `()`.
 
-Hence our pattern accepts domains like `edu.in` _(i.e with 0 repetation of `\w+\.`)_ **or** `snu.edu.in` _(i.e with 1 repetation of `\w+\.`)_.
+Hence our pattern accepts domains like `edu.in` _(i.e with 0 repetation of_  `\w+\.`) **or** `snu.edu.in` (_i.e with 1 repetation of_ `(\w+\.)`).
 
 Also notice the usage of `(\w|\.)` (read as *word character `or` period*) which now allows usage of **periods** as well in username.
 
-<br>
 
-You can see below the demonstration of various valid and invalid email inputs for our above specified regex pattern.
+You can see below the demonstration video (click it to visit [asciinema site](https://asciinema.org/))of various valid and invalid email inputs for our above specified regex pattern.
 
-[![asciicast](/IMG.png)](https://asciinema.org/a/SDNVZX0lsJdrCkI1YR5rIdld9)
+[![asciicast](/static/IMG.png)](https://asciinema.org/a/SDNVZX0lsJdrCkI1YR5rIdld9)
 
 ---
 
 In re.search() there is one other amazing functionality involving `()` and `(?:)`.
 
-> What if you, not just want to match a pattern but also want to extract specific information from the matched pattern?
+> What if you, not just want to match a pattern but also want to extract specific string that is being matched by the pattern?
 
 Offcourse with usual python coding you can attain that, but re.search() offers more functionality. Anyway lets see below both traditional pythonic way and regex way for one such example.
 
@@ -303,22 +299,23 @@ print(name)
 
 There are a couple of things going on above, let me break down one by one.
 * Python supports Walrus operator from python 3.8 onwards. It does both assignment job and checks for boolean value of the variable in LHS, i.e `matches`.
-<br>
+
 * In the above regex pattern 
     * `^(.+)` matches 1 or more charcters except newline in beginning
     * `, *` maches for a comma and whitespace _(0 or more white space)_
     * `(.+)$` matches 1 or more charcters except newline in the end
-<br>
+
 * So far, in the previous codes we have checked just the boolean value of `re.search()`, if its true then we declared our pattern is matched with input string, else not. But with return value of `re.search()`, one other interesting thing can be achieved.
-<br>
+
 * When we use `()` in our regex pattern it captures whatever string input matched within in. What it means is that, in the above code `(.+)` this matches any character _(1 or more repetations)_. So the first and second `()` captures each of the string matched to `.+` from the input. 
-<br>
+
 * And the captured string can be obtained by grouping the captured string(In some sort of order, so that we can access them with some index) using `groups()`  or `group()` as done above.
-<br>
+
 * Unlike usual python conventions of index starting at 0, here inorder to acces string matched inside first `()` we have to access them with index 1, i.e `matches.group(1)`.
-<br>
+
 * And then we are using usual [f strings](https://docs.python.org/3/tutorial/inputoutput.html "f Strings Documentation") to get the right format.
-<br>
+
+
 
 > Example : If the input is `Khan,Sal`. Then `first = Sal` and `last = Khan`.
 
@@ -335,6 +332,7 @@ But `re.search` is not the only function in `re` module.
 * `..*` is same as `.+`
 * `re.IGNORECASE` is a flag which avoids checking case sensitivity in user input. 
     * usage : `re.search(pattern, string, re.IGNORECASE)`
+
 ---
 
 ## 2) re.sub(pattern, repl, string, count=0, flag=0)
@@ -343,7 +341,7 @@ But `re.search` is not the only function in `re` module.
 * `repl` - replacement string. TO replace it with matched string
 * `string` - Input string to replace particular sub string in it which matches the above `pattern` with `repl` string 
 
----
+
 Let us learn it with a *hypothetical* example question.
 
 ### **Question**
@@ -381,16 +379,16 @@ print(required_string)
 
 * Input : `My username is elonmusk` <br>
   Output: `My username is elonmusk` (Explanation point 4)
-  <br>
+  
 * Input : `My username is https://www.twitter.com/elonmusk` *__(Notice `https`)__* <br>
   Output: `My username is elonmusk`
-  <br>
+  
 * Input : `My username is http://www.twitter.com/elonmusk` **_(Notice `http`)_ (Explanaiton point 1: We made `s` optional in end of http with help of `?`)** <br>
   Output: `My username is elonmusk`
-  <br>
+  
 * Input : `My username is www.twitter.com/elonmusk` **(Explanation point 1: We made `https` or `http` itself optional, hence our pattern matching is more robust)** <br>
   Output: `My username is elonmusk`
-  <br>
+  
 * Input : `My username is https://twitter.com/elonmusk` **(Explanation point 2 : We made `www.` optional)**
   Output: `My username is elonmusk`
   
@@ -398,8 +396,10 @@ print(required_string)
 More robust isn't it? If we want to achieve something like the above one in usual pythonic way, it would'nt be completed in just `4 lines of code`.
 
 ---
+<br>
 
 >The above work can also be done with help of `re.search()` by capturing `()`
+
 
 ```python
 url = input("Url : ").strip()
@@ -416,8 +416,10 @@ else:
 * Example Test cases and output:
     * Input : `My username is elonmusk` <br>
       Output: `My username is elonmusk`
+
     * Input : `My username is https://www.twitter.com/elonmusk` <br>
       Output: `My username is elonmusk`
+
     * Input : `My username is www.twitter.com/elonmusk` <br>
       Output: `My username is elonmusk`
 
@@ -428,7 +430,7 @@ _I hope you got a clear understanding of regex. These are not the exhaustive lis
 
 _Regex is also widely used in Perl, PHP, JavaScript, Java and even in searching engines used in Microsoft word, excel etc._
 
-For more examples refer my other codes in this repository
+For more examples refer my other codes in my repository
 * [IP_Address.py](/programs/IP_Address.py) : To validate IP Address
 * [Convert_Time.py](/programs/Convert_Time.py) : To Convert normal time to 24 hour time. 
 * [Shrink_Youtube_URL.py](/programs/Shrink_Youtube_URL.py) : To Shrink Youtube urls.
